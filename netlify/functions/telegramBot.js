@@ -32,11 +32,11 @@ const bot = new TelegramBot(token, { polling: true });
 
 bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
-  let message = chatId;
+  let message = "ChatID : " + chatId;
   try {
-    bot.sendMessage(chatId, message);
+    await sendMessage(chatId, message);
   } catch (error) {
-    bot.sendMessage(chatId, error);
+    await sendMessage(chatId, error);
   }
 });
 
