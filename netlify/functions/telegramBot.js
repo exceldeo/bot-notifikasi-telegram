@@ -2,6 +2,7 @@ const { createServer } = require("http");
 const TelegramBot = require("node-telegram-bot-api");
 const express = require("express");
 const serverless = require("serverless-http");
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
