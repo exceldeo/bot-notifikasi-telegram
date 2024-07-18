@@ -30,15 +30,15 @@ const token = process.env.TOKEN;
 
 const bot = new TelegramBot(token, { polling: true });
 
-bot.on("message", async (msg) => {
-  const chatId = msg.chat.id;
-  let message = "ChatID : " + chatId;
-  try {
-    await sendMessage(chatId, message);
-  } catch (error) {
-    await sendMessage(chatId, error);
-  }
-});
+// bot.on("message", async (msg) => {
+//   const chatId = msg.chat.id;
+//   let message = "ChatID : " + chatId;
+//   try {
+//     await sendMessage(chatId, message);
+//   } catch (error) {
+//     await sendMessage(chatId, error);
+//   }
+// });
 
 function sendMessage(chatId, message) {
   return bot.sendMessage(chatId, message);
