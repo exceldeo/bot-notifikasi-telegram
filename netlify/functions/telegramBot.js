@@ -1,8 +1,9 @@
+const { createServer } = require("http");
 const TelegramBot = require("node-telegram-bot-api");
-const axios = require("axios");
 const express = require("express");
-const app = express();
+const serverless = require("serverless-http");
 
+const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -24,12 +25,6 @@ app.post("/sendMessage", (req, res) => {
     });
 });
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-
-// replace the value below with the Telegram token you receive from @BotFather
 const token = process.env.TOKEN;
 
 const bot = new TelegramBot(token, { polling: true });
@@ -47,3 +42,5 @@ bot.on("message", async (msg) => {
 function sendMessage(chatId, message) {
   return bot.sendMessage(chatId, message);
 }
+
+module.exports.handler = serverless(app);
